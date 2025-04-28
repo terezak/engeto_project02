@@ -1,5 +1,4 @@
-import pytest
-from playwright.sync_api import sync_playwright, Page, expect
+from playwright.sync_api import Page, expect
 
 
 BASE_URL = "https://portal.engeto.com/lobby/sign-in"
@@ -11,7 +10,6 @@ INVALID_PASSWORD = "invalidpassword"
 
 def test_login_page_title(page: Page):
     page.goto(BASE_URL)
-    #assert page.title() == 'Přihlášení'   
     expect(page).to_have_title('Přihlášení')
 
 #wrong password

@@ -1,6 +1,5 @@
-import pytest
 import re
-from playwright.sync_api import sync_playwright, Page, expect
+from playwright.sync_api import Page, expect
 
 BASE_URL = "https://engeto.cz/"
 
@@ -38,11 +37,7 @@ def test_course_choise(page: Page):
     
     kurzy = page.locator("text=Datový analytik s Pythonem")
     count = kurzy.count()
-    #print(f"Počet výskytů kurzu: {count}")
-    #expect(kurzy.nth(0)).to_be_visible()
-    assert count > 0, "Nenašel se žádný kurz s názvem 'Datový analytik s Pythonem'"
-    
+    assert count > 0, "Nenašel se žádný kurz s názvem 'Datový analytik s Pythonem'"    
 
     datum_element = page.locator("bold.has-text-lg-semibold-font-size").nth(10)
-    #expect(datum_element).to_have_text("Od 13. května")
     expect(datum_element).to_have_text("Od 20. května")
