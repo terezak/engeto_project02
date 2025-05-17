@@ -13,7 +13,7 @@ pytest
 --headed
 --slowmo 1000
 
-pytest test_engeto.py --headed --slowmo 1000
+pytest test_engeto_02.py --headed --slowmo 1000
 
 -------------------------------------------------------
 
