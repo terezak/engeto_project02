@@ -4,7 +4,7 @@ on:
   schedule:
     #- cron: '0 9 * * 1-5' # runs 9:00
     #- cron: '0 15 * * 2-4' # runs 15:00
-    - cron:  '30 7,17 * * *' # every day at 5:30 and 17:30 UTC
+    #- cron:  '30 7,17 * * *' # every day at 5:30 and 17:30 UTC
   push:
     branches: [ main, master ]
   pull_request:
