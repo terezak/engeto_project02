@@ -40,4 +40,4 @@ def test_course_choise(page: Page):
     assert count > 0, "Nenašel se žádný kurz s názvem 'Datový analytik s Pythonem'"    
 
     datum_element = page.locator("bold.has-text-lg-semibold-font-size").nth(10)
-    expect(datum_element).to_have_text("Od 03. června")
+    expect(datum_element).to_have_text("Od 18. června")
