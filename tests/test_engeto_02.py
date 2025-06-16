@@ -20,9 +20,12 @@ def test_button_terminy_visible(page: Page):
     cookies_button = page.get_by_role("button", name="Souhlasím jen s nezbytnými")
     if cookies_button.count() == 1:
         cookies_button.click() # cookies accept
-              
-    expect(page.get_by_role("link", name="Zobrazit termíny kurzů")).to_be_visible()
+
+    expect(page.get_by_role("link", name="Kurzy")).to_be_visible()
+    page.get_by_role("link", name="Kurzy").click()       
+    expect(page.get_by_role("link", name="Zobrazit termíny kurzů")).to_be_visible()    
     page.get_by_role("link", name="Zobrazit termíny kurzů").click()
+    
 
     expect(page).to_have_title("Termíny kurzů programování | ENGETO")
     expect(page).to_have_url(re.compile(".*terminy"))
@@ -40,4 +43,9 @@ def test_course_choise(page: Page):
     assert count > 0, "Nenašel se žádný kurz s názvem 'Datový analytik s Pythonem'"    
 
     datum_element = page.locator("bold.has-text-lg-semibold-font-size").nth(10)
-    expect(datum_element).to_have_text("Od 03. června")
+    expect(datum_element).to_have_text(re.compile(r"Od \d{1,2}\. [^\d\s]+")) # regular expression pro libovolné datum, měsíc s diakritikou
+    #expect(page).to_have_url(re.compile(".*terminy"))
+    
+
+    
+    
