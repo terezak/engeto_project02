@@ -10,16 +10,19 @@ BASE_URL = "https://engeto.cz/"
 #     cookie_bar = page.locator(f"div#{'cookiescript_injected'}")
 #     expect(cookie_bar).not_to_be_visible()
 
+def accept_cookies_if_present(page: Page):
+    """Klikne na tlačítko pro odmítnutí nebo přijetí cookies, pokud je zobrazeno."""
+    cookies_button = page.get_by_role("button", name="Souhlasím jen s nezbytnými")
+    if cookies_button.count() == 1:
+        cookies_button.click() # cookies accept
+
 def test_title_exists(page: Page): 
     page.goto(BASE_URL)
     expect(page).to_have_title("Kurzy programování a dalších IT technologií | ENGETO")
 
 def test_button_terminy_visible(page: Page): 
     page.goto(BASE_URL)
-
-    cookies_button = page.get_by_role("button", name="Souhlasím jen s nezbytnými")
-    if cookies_button.count() == 1:
-        cookies_button.click() # cookies accept
+    accept_cookies_if_present(page)
 
     expect(page.get_by_role("link", name="Kurzy")).to_be_visible()
     page.get_by_role("link", name="Kurzy").click()       
@@ -33,7 +36,7 @@ def test_button_terminy_visible(page: Page):
 
 def test_course_choise(page: Page):
     page.goto("https://engeto.cz/terminy/")
-    #page.locator("#cookiescript_reject").click()
+    accept_cookies_if_present(page)
     page.get_by_role("checkbox", name="Python Python").check()
     page.get_by_role("checkbox", name="Datová analýza Datová analýza").check()
     page.get_by_role("checkbox", name="Dlouhodobé (3–6 měsíců)").check()    
