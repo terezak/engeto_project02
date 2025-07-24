@@ -24,8 +24,8 @@ def test_button_terminy_visible(page: Page):
     page.goto(BASE_URL)
     accept_cookies_if_present(page)
 
-    expect(page.get_by_role("link", name="Kurzy")).to_be_visible()
-    page.get_by_role("link", name="Kurzy").click()       
+    expect(page.get_by_role("link", name="Kurzy", exact=True)).to_be_visible()
+    page.get_by_role("link", name="Kurzy", exact=True).click()       
     expect(page.get_by_role("link", name="Zobrazit termíny kurzů")).to_be_visible()    
     page.get_by_role("link", name="Zobrazit termíny kurzů").click()
     
@@ -47,8 +47,4 @@ def test_course_choise(page: Page):
 
     datum_element = page.locator("bold.has-text-lg-semibold-font-size").nth(10)
     expect(datum_element).to_have_text(re.compile(r"Od \d{1,2}\. [^\d\s]+")) # regular expression pro libovolné datum, měsíc s diakritikou
-    #expect(page).to_have_url(re.compile(".*terminy"))
-    
-
-    
-    
+    #expect(page).to_have_url(re.compile(".*terminy")) 
