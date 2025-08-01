@@ -10,12 +10,12 @@ INVALID_PASSWORD = "invalidpassword"
 
 def test_login_page_title(page: Page):
     page.goto(BASE_URL)
-    expect(page).to_have_title('Přihlášení')
+    expect(page).to_have_title('Přihlášení | ENGETO')
 
 #wrong password
 def test_invalid_login_shows_error_message(page: Page):
     page.goto(BASE_URL)
-    page.get_by_role("button", name="Přihlásit se pomoci e-mailu a").click()
+    #page.get_by_role("button", name="Přihlásit se pomoci e-mailu a").click()
 
     page.locator("#username").fill(INVALID_EMAIL)
     page.locator("#password").fill(INVALID_PASSWORD)
